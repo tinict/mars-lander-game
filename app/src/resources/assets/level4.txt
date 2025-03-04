@@ -1,0 +1,25 @@
+1000 500
+mars_sky.jpg
+ship.png ship_bottom.png ship_left.png ship_right.png ship_landed.png ship_crashed.png
+20 50
+20,0 100,0
+70
+-0,1
+2,0
+0,5
+980 25
+# Level 4: start in the top-left with a small pad on far right with less fuel.
+# Background image is from one of the NASA Mars rovers.
+#
+# Description of values:
+#  <width in pixels> <height in pixels>
+#  <background image>
+#  <normal ship image> <bottom thrusters> <left thrusters> <right thrusters> <ship landed> <ship crashed>
+#  <horizontal distance, ship center to edge of thrusters> <vertical distance, ship center to bottom edge of thrusters>
+#  <ship starting x> <ship starting y>
+#  <starting fuel>
+#  <thruster sound> <good landing sound> <bad landing sound>
+#  <gravity term>
+#  <maximum survivable velocity> 
+#  <thrust amount>
+#  <landing pad x center> <distance from center of landing pad to edge>
