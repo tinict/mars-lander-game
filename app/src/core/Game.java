@@ -4,14 +4,9 @@ import java.util.*;
 
 import modules.DrawGraphic.StdDraw;
 
-/**
- * Description: Class Game should algorithm and actions as start, render, update, ...
- * Functionality: start, render, update
- * Init date: 03/03/2025
- * Author: Tinmy Nguyen
- */
 public class Game {
     private static boolean gameOver;
+    private static ArrayList<Obstacle> obstacles; // Danh sách chướng ngại vật
 
     public static void setGameOver(boolean gameOver) {
         Game.gameOver = gameOver;
@@ -27,6 +22,7 @@ public class Game {
 
     public static void start() {
         gameOver = false;
+        obstacles = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
 
@@ -34,17 +30,55 @@ public class Game {
         Player.start(input);
         Physics.start(input);
         LandingPad.start(input);
+
+        // Tạo ngẫu nhiên 3-5 chướng ngại vật
+        Random rand = new Random();
+        int obstacleCount = rand.nextInt(3) + 3; // Số lượng từ 3-5
+        for (int i = 0; i < obstacleCount; i++) {
+            obstacles.add(Obstacle.createRandomObstacle(Scene.getWidth(), Scene.getHeight()));
+        }
     }
 
     public static void update() {
-        Player.update();
+        double playerX = Player.getX();
+        double playerY = Player.getY();
+        double playerWidth = Player.getWidth();
+        double playerHeight = Player.getHeight();
+
+        // Kiểm tra va chạm trước
+        if (!gameOver) {
+            for (Obstacle obstacle : obstacles) {
+                if (obstacle.checkCollision(playerX, playerY, playerWidth, playerHeight)) {
+                    Player.setSprite(Player.getShipCrashedImage());
+                    setGameOver(true);
+                    break;
+                }
+            }
+        }
+
+        // Chỉ cập nhật nếu chưa game over
+        if (!gameOver) {
+            Player.update();
+        }
     }
 
     public static void render() {
         Scene.draw();
         Player.draw();
         LandingPad.draw();
+        for (Obstacle obstacle : obstacles) {
+            obstacle.draw(); // Vẽ tất cả chướng ngại vật
+        }
         Hud.draw();
         StdDraw.show(100);
+    }
+
+    // Getter cho Scene width (thêm vào lớp Scene)
+    public static int getSceneWidth() {
+        return Scene.getWidth();
+    }
+
+    public static int getSceneHeight() {
+        return Scene.getHeight();
     }
 }

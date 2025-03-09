@@ -26,6 +26,28 @@ public class Player {
         return x;
     }
 
+
+    // New Feature
+    public static double getWidth() {
+        return width;
+    }
+
+    public static double getHeight() {
+        return height;
+    }
+
+    public static double getY() {
+        return y;
+    }
+
+    public static String getShipCrashedImage() {
+        return shipCrashedImage;
+    }
+
+    public static void setSprite(String newSprite) {
+        sprite = newSprite;
+    }
+
     //Ship   fuel
     private static int fuel;
 
@@ -66,14 +88,14 @@ public class Player {
         y += Physics.getVelocityY();
         x += Physics.getVelocityX();
 
-        if ((y + height) > (Scene.getHeight() - 15)) {
+        if (y + height >= Scene.getHeight() - 15) {
             if (LandingPad.isTouching() && Physics.isSurvivableSpeed()) {
                 sprite = shipLandedImage;
+                Game.setGameOver(true);
             } else {
                 sprite = shipCrashedImage;
+                Game.setGameOver(true);
             }
-
-            Game.setGameOver(true);
         }
     }
 
@@ -81,16 +103,16 @@ public class Player {
         if (StdDraw.hasNextKeyTyped()) {
             char ch = StdDraw.nextKeyTyped();
             if (ch == 'w') {
-                Physics.thrustUp();                //   Go   faster   upwards
-                sprite = thrusterUpImage;          //Set   image   for   up   thruster
+                Physics.thrustUp();
+                sprite = thrusterUpImage;
                 fuel--;
             } else if (ch == 'd') {
-                Physics.thrustRight();             //   Go   faster   right
-                sprite = thrusterLeftImage;
+                Physics.thrustRight();
+                sprite = thrusterRightImage; // Sang phải dùng thrusterRightImage
                 fuel--;
             } else if (ch == 'a') {
-                Physics.thrustLeft();             //   Go   faster   left
-                sprite = thrusterRightImage;
+                Physics.thrustLeft();
+                sprite = thrusterLeftImage; // Sang trái dùng thrusterLeftImage
                 fuel--;
             }
         } else {

@@ -42,6 +42,6 @@ public class Physics {
     }
 
     public static boolean isSurvivableSpeed() {
-        return velocityY < maxSurvivableVelocity;
+        return Math.abs(velocityY) < maxSurvivableVelocity;
     }
 }

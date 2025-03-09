@@ -9,6 +9,10 @@ public class Scene {
     private static int height;
     private static String image;
 
+    public static int getWidth() {
+        return width;
+    }
+
     public static int getHeight() {
         return height;
     }

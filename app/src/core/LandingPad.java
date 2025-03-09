@@ -26,4 +26,12 @@ public class LandingPad {
         isTouching = Math.abs(Player.getX() - LandingPad.x) < LandingPad.width;
         return isTouching;
     }
+
+    public static double getX() {
+        return x;
+    }
+
+    public static double getWidth() {
+        return width;
+    }
 }
