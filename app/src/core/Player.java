@@ -53,12 +53,12 @@ public class Player {
 
     public static void start(Scanner input) {
         //Read   the   ship   art   assets
-        shipImage = "src/resources/assets/" + input.next(); // This is reading image filenames
-        thrusterUpImage = "src/resources/assets/" + input.next();
-        thrusterLeftImage = "src/resources/assets/" + input.next();
-        thrusterRightImage = "src/resources/assets/" + input.next();
-        shipLandedImage = "src/resources/assets/" + input.next();
-        shipCrashedImage = "src/resources/assets/" + input.next();
+        shipImage = "D:/prm25/mars-lander-game/app/src/resources/assets/" + input.next(); // This is reading image filenames
+        thrusterUpImage = "D:/prm25/mars-lander-game/app/src/resources/assets/" + input.next();
+        thrusterLeftImage = "D:/prm25/mars-lander-game/app/src/resources/assets/" + input.next();
+        thrusterRightImage = "D:/prm25/mars-lander-game/app/src/resources/assets//" + input.next();
+        shipLandedImage = "D:/prm25/mars-lander-game/app/src/resources/assets/" + input.next();
+        shipCrashedImage = "D:/prm25/mars-lander-game/app/src/resources/assets/" + input.next();
 
         //set   current   image
         sprite = shipImage;

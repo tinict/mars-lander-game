@@ -20,7 +20,7 @@ public class Scene {
     public static void start(Scanner input) {
         Scene.width = input.nextInt();
         Scene.height = input.nextInt();
-        Scene.image = "src/resources/assets/" + input.next();
+        Scene.image = "D:/prm25/mars-lander-game/app/src/resources/assets/" + input.next();
 
         StdDraw.setCanvasSize(width, height);
         StdDraw.setXscale(0.0, width);
