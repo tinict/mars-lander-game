@@ -6,7 +6,7 @@ import modules.DrawGraphic.StdDraw;
 
 public class Game {
     private static boolean gameOver;
-    private static ArrayList<Obstacle> obstacles; // Danh sách chướng ngại vật
+    private static ArrayList<Obstacle> obstacles;
 
     public static void setGameOver(boolean gameOver) {
         Game.gameOver = gameOver;
@@ -31,9 +31,8 @@ public class Game {
         Physics.start(input);
         LandingPad.start(input);
 
-        // Tạo ngẫu nhiên 3-5 chướng ngại vật
         Random rand = new Random();
-        int obstacleCount = rand.nextInt(3) + 3; // Số lượng từ 3-5
+        int obstacleCount = rand.nextInt(3) + 3;
         for (int i = 0; i < obstacleCount; i++) {
             obstacles.add(Obstacle.createRandomObstacle(Scene.getWidth(), Scene.getHeight()));
         }
@@ -45,7 +44,11 @@ public class Game {
         double playerWidth = Player.getWidth();
         double playerHeight = Player.getHeight();
 
-        // Kiểm tra va chạm trước
+        if(Player.getFuel() == 0) {
+            Player.setSprite(Player.getShipCrashedImage());
+            setGameOver(true);
+        }
+
         if (!gameOver) {
             for (Obstacle obstacle : obstacles) {
                 if (obstacle.checkCollision(playerX, playerY, playerWidth, playerHeight)) {
@@ -56,7 +59,6 @@ public class Game {
             }
         }
 
-        // Chỉ cập nhật nếu chưa game over
         if (!gameOver) {
             Player.update();
         }
@@ -67,13 +69,13 @@ public class Game {
         Player.draw();
         LandingPad.draw();
         for (Obstacle obstacle : obstacles) {
-            obstacle.draw(); // Vẽ tất cả chướng ngại vật
+            obstacle.draw(); 
+            // obstacle.setInactive();
         }
         Hud.draw();
         StdDraw.show(100);
     }
 
-    // Getter cho Scene width (thêm vào lớp Scene)
     public static int getSceneWidth() {
         return Scene.getWidth();
     }

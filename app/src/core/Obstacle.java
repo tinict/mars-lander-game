@@ -52,7 +52,6 @@ public class Obstacle {
             width = rand.nextDouble() * 30 + 10;
             height = rand.nextDouble() * 30 + 10;
 
-            // Kiểm tra không chồng lấp với LandingPad
             validPosition = Math.abs(x - LandingPad.getX()) > (LandingPad.getWidth() + width);
         } while (!validPosition);
 
